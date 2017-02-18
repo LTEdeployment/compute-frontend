@@ -33,6 +33,7 @@ import Tooltip from 'vue-bulma-tooltip'
 import Slider from 'vue-bulma-slider'
 import * as types from '../../store/mutation-types'
 import { Tabs, TabPane } from '../../components/pagination'
+import configJson from '../../../config/api.json'
 
 export default {
   components: {
@@ -116,7 +117,7 @@ export default {
     if (!this.tasks.tasks || this.tasks.tasks.length === 0) {
       this.getTasksList({ page: this.tasks.page })
     }
-    this.$http.get('http://computebackend.webdev.com/api/tasks/amount')
+    this.$http.get(configJson.base_url + 'api/tasks/amount')
       .then(function (response) {
         if (response.body.code !== 0) {
           console.log('error ' + response.body.message)

@@ -41,6 +41,7 @@ import Tooltip from 'vue-bulma-tooltip'
 import * as types from '../../store/mutation-types'
 import Slider from 'vue-bulma-slider'
 import { Tabs, TabPane } from '../../components/pagination'
+import configJson from '../../../config/api.json'
 
 export default {
   components: {
@@ -75,7 +76,7 @@ export default {
     if (!this.directions.directions || this.directions.directions.length === 0 || this.directions.page === 0) {
       this.getDirectionsList({ page: this.directions.page })
     }
-    this.$http.get('http://computebackend.webdev.com/api/directions/amount')
+    this.$http.get(configJson.base_url + 'api/directions/amount')
       .then(function (response) {
         if (response.body.code !== 0) {
           console.log('error' + response.body.message)
