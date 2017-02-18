@@ -96,6 +96,11 @@ export default {
         segmentShowStroke: false,
         tooltips: {
           mode: 'label'
+        },
+        scales: {
+          xAxes: [{
+            display: false
+          }]
         }
       },
       backgroundColor: 'rgba(31, 200, 219, 1)'
