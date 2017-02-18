@@ -143,7 +143,7 @@ export default {
           label: '数据'
         }]
       }
-      for (let i = 0; i <= 360; i++) {
+      for (let i = -179; i <= 179; i++) {
         data.labels.push(i + '')
       }
       if (!item || !item.data) {
