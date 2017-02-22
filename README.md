@@ -1,7 +1,7 @@
 # Compute Front End
 ## Features
 
-* Powered by [Vue][] **2.0** & [Bulma][] **0.2**
+* Powered by `Vue2`
 * Responsive and Flexible Box Layout
 
 ## Development
