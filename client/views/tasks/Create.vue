@@ -349,9 +349,9 @@ export default {
           this.directionOptions = response.body.data
           return
         }
-        console.log('error: ' + response.body.message)
+        this.failMessage('error: ' + response.body.message)
       }, function (err) {
-        console.log('error: ' + JSON.stringify(err))
+        this.failMessage('error: ' + JSON.stringify(err))
       })
   },
 
