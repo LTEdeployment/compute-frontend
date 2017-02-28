@@ -41,7 +41,7 @@ import Tooltip from 'vue-bulma-tooltip'
 import * as types from '../../store/mutation-types'
 import Slider from 'vue-bulma-slider'
 import { Tabs, TabPane } from '../../components/pagination'
-import configJson from '../../../config/api.json'
+import configJson from '../../../config/api'
 
 export default {
   components: {

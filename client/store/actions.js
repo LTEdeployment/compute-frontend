@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 import Vue from 'vue'
-import * as config from '../../config/api.json'
+import * as config from '../../config/api'
 
 const BASE_API_URL = config['base_url'] + 'api/'
 

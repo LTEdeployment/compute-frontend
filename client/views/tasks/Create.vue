@@ -317,7 +317,7 @@
 import { mapGetters } from 'vuex'
 import Multiselect from 'vue-multiselect'
 import Message from 'vue-bulma-message'
-import configJson from '../../../config/api.json'
+import configJson from '../../../config/api'
 import Vue from 'vue'
 
 const MessageComponent = Vue.extend(Message)
