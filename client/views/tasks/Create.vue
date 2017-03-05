@@ -5,59 +5,72 @@
       <article class="tile is-child box">
         <h1 class="title">LTE 参数</h1>
         <div class="block">
-          <label class="label">系统带宽</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_bindwidth" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线增益</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_antenna_gain" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线损耗因子</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_antenna_loss_factor" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">馈线损耗</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_feederline_factor" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">噪声系数</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_noise_figure" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">发射功率</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_power" type="text" placeholder="Text input">
-          </p>
-          <label class="label">天线高度</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_antenna_height" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">发射频率</label>
-          <p class="control">
-            <input class="input" v-model="paramLte.lte_frequency" type="text" placeholder="Text input" value="">
-          </p>
+          <xinput label="系统带宽"
+                  v-model="paramLte.lte_bindwidth"
+                  errorHint="输入有误,需是整数,小于 20"
+                  :validate="paramLte.lte_bindwidth <= 20 && paramLte.lte_bindwidth >=0">
+          </xinput>
+          <xinput label="天线增益"
+                  v-model="paramLte.lte_antenna_gain"
+                  errorHint="输入有误,需是正整数"
+                  :validate="paramLte.lte_antenna_gain >= 0">
+          </xinput>
+          <xinput label="天线损耗因子"
+                  v-model="paramLte.lte_antenna_loss_factor"
+                  errorHint="输入有误,需是正数"
+                  :validate="paramLte.lte_antenna_loss_factor >= 0">
+          </xinput>
+          <xinput label="馈线损耗"
+                  v-model="paramLte.lte_feederline_factor"
+                  errorHint="输入有误,需是实数"
+                  :validate="true">
+          </xinput>
+          <xinput label="噪声系数"
+                  v-model="paramLte.lte_noise_figure"
+                  errorHint="输入有误,需是正数"
+                  :validate="paramLte.lte_noise_figure > 0">
+          </xinput>
+          <xinput label="发射功率"
+                  v-model="paramLte.lte_power"
+                  errorHint="输入有误,需是正数"
+                  :validate="paramLte.lte_power > 0">
+          </xinput>
+          <xinput label="天线高度"
+                  v-model="paramLte.lte_antenna_height"
+                  errorHint="输入有误,需是正数"
+                  :validate="paramLte.lte_antenna_height > 0">
+          </xinput>
+          <xinput label="发射频率"
+                  v-model="paramLte.lte_frequency"
+                  errorHint="输入有误,需是正数"
+                  :validate="paramLte.lte_frequency > 0">
+          </xinput>
           <h3 class="title">用户参数</h3>
-          <label class="label">天线增益</label>
-          <p class="control">
-            <input class="input" v-model="paramUser.user_antenna_gain" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线损耗因子</label>
-          <p class="control">
-            <input class="input" v-model="paramUser.user_loss_factor" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">噪声系数</label>
-          <p class="control">
-            <input class="input" v-model="paramUser.user_noise_figure" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线高度</label>
-          <p class="control">
-            <input class="input" v-model="paramUser.user_antenna_height" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">发射频率</label>
-          <p class="control">
-            <input class="input" v-model="paramUser.user_frequency" type="text" placeholder="Text input" value="">
-          </p>
+          <xinput label="天线增益"
+                  v-model="paramUser.user_antenna_gain"
+                  errorHint="输入有误,需是实数"
+                  :validate="true">
+          </xinput>
+          <xinput label="天线损耗因子"
+                  v-model="paramUser.user_loss_factor"
+                  errorHint="输入有误,需是 0~1 实数"
+                  :validate="paramUser.user_loss_factor >= 0 && paramUser.user_loss_factor <= 1">
+          </xinput>
+          <xinput label="噪声系数"
+                  v-model="paramUser.user_noise_figure"
+                  errorHint="输入有误,需是实数"
+                  :validate="true">
+          </xinput>
+          <xinput label="天线高度"
+                  v-model="paramUser.user_antenna_height"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramUser.user_antenna_height >= 0">
+          </xinput>
+          <xinput label="发射频率"
+                  v-model="paramUser.user_frequency"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramUser.user_frequency >= 0">
+          </xinput>
         </div>
       </article>
     </div>
@@ -66,34 +79,41 @@
       <article class="tile is-child box">
         <h1 class="title">Radar 参数</h1>
         <div class="block">
-          <label class="label">天线增益</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_antenna_gain" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线损耗因子</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_loss_factor" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">雷达带宽</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_bindwidth" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线仰角</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_antenna_tilt" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">馈线损耗</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_feeder_loss" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">噪声系数</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_noise_figure" type="text" placeholder="Text input" value="">
-          </p>
-          <label class="label">天线高度</label>
-          <p class="control">
-            <input class="input" v-model="paramRadar.radar_antenna_height" type="text" placeholder="Text input">
-          </p>
+          <xinput label="天线增益"
+                  v-model="paramRadar.radar_antenna_gain"
+                  errorHint="输入有误,需是实数"
+                  :validate="true">
+          </xinput>
+          <xinput label="天线损耗因子"
+                  v-model="paramRadar.radar_loss_factor"
+                  errorHint="输入有误,需是 0~1 实数"
+                  :validate="paramRadar.radar_loss_factor >=0 && paramRadar.radar_loss_factor <= 1">
+          </xinput>
+          <xinput label="雷达带宽"
+                  v-model="paramRadar.radar_bindwidth"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramRadar.radar_bindwidth >= 0">
+          </xinput>
+          <xinput label="天线仰角"
+                  v-model="paramRadar.radar_antenna_tilt"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramRadar.radar_antenna_tilt >= 0">
+          </xinput>
+          <xinput label="馈线损耗"
+                  v-model="paramRadar.radar_feeder_loss"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramRadar.radar_feeder_loss >= 0">
+          </xinput>
+          <xinput label="噪声系数"
+                  v-model="paramRadar.radar_noise_figure"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramRadar.radar_noise_figure >= 0">
+          </xinput>
+          <xinput label="天线高度"
+                  v-model="paramRadar.radar_antenna_height"
+                  errorHint="输入有误,需是正实数"
+                  :validate="paramRadar.radar_antenna_height >= 0">
+          </xinput>
         </div>
       </article>
     </div>
@@ -104,96 +124,51 @@
       <article class="tile is-child box">
         <h1 class="title">公共参数</h1>
         <div class="block">
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">ACIR最小值</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.acir_min" placeholder="ACIR最小值">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">ACIR最大值</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.acir_max" placeholder="ACIR最大值">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">ACIR步长</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.acir_space" placeholder="ACIR步长">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">基站间最近间距</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.lte_min_d" placeholder="基站间最近间距">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">隔离距离</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.sR" placeholder="隔离距离">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">仿真区域半径</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.lR" placeholder="仿真区域半径">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">每个下行用户占用的资源块数</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.resource_block" placeholder="每个下行用户占用的资源块数">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">路径损耗补偿因子</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.compensation_factor" placeholder="路径损耗补偿因子">
-              </p>
-            </div>
-          </div>
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">USER 最大发射功率</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="paramPublic.transpmax" placeholder="USER 最大发射功率">
-              </p>
-            </div>
-          </div>
+          <xinput label="ACIR 最小值"
+            v-model="paramPublic.acir_min"
+            errorHint="输入有误,需是实数"
+            :validate="true">
+          </xinput>
+          <xinput label="ACIR 最大值"
+            v-model="paramPublic.acir_max"
+            errorHint="输入有误,需是实数,且大于 ACIR 最小值"
+            :validate="paramPublic.acir_min < (paramPublic.acir_max - paramPublic.acir_space)">
+          </xinput>
+          <xinput label="ACIR 步长"
+            v-model="paramPublic.acir_space"
+            errorHint="输入有误,需是正实数"
+            :validate="paramPublic.acir_space > 0">
+          </xinput>
+          <xinput label="基站间最近间距"
+            v-model="paramPublic.lte_min_d"
+            errorHint="输入有误,需是正实数"
+            :validate="paramPublic.lte_min_d > 0">
+          </xinput>
+          <xinput label="隔离距离"
+            v-model="paramPublic.sR"
+            errorHint="输入有误,需是正实数"
+            :validate="paramPublic.sR > 0">
+          </xinput>
+          <xinput label="仿真区域半径"
+            v-model="paramPublic.lR"
+            errorHint="输入有误,需是正实数"
+            :validate="paramPublic.lR > 0">
+          </xinput>
+          <xinput label="每个下行用户占用的资源块数"
+            v-model="paramPublic.resource_block"
+            errorHint="输入有误,需是正实数"
+            :validate="Number.isInteger(paramPublic.resource_block) && (Number(paramPublic.resource_block) > 0)">
+          </xinput>
+          <xinput label="路径损耗补偿因子"
+            v-model="paramPublic.compensation_factor"
+            errorHint="输入有误,需是实数"
+            :validate="true">
+          </xinput>
+          <xinput label="USER 最大发射功率"
+            v-model="paramPublic.transpmax"
+            errorHint="输入有误,需是正实数"
+            :validate="paramPublic.transpmax >= 0">
+          </xinput>
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">是否采用三扇区</label>
@@ -243,16 +218,12 @@
       <article class="tile is-child box">
         <h1 class="title">任务属性</h1>
         <div class="block">
-          <div class="control is-horizontal">
-            <div class="control-label">
-              <label class="label">任务名</label>
-            </div>
-            <div class="control is-grouped">
-              <p class="control is-expanded">
-                <input class="input" type="text" v-model="name" placeholder="任务名">
-              </p>
-            </div>
-          </div>
+          <xinput label="任务名"
+            v-model="name"
+            errorHint="输入有误,必不为空"
+            :requireNumber="false"
+            :validate="!!name">
+          </xinput>
           <div class="control is-horizontal">
             <div class="control-label">
               <label class="label">基站方向图</label>
@@ -318,6 +289,7 @@ import { mapGetters } from 'vuex'
 import Multiselect from 'vue-multiselect'
 import Message from 'vue-bulma-message'
 import configJson from '../../../config/api'
+import Xinput from '../../components/Xinput'
 import Vue from 'vue'
 
 const MessageComponent = Vue.extend(Message)
@@ -336,7 +308,10 @@ const openMessage = (propsData = {
 }
 
 export default {
-  components: { Multiselect },
+  components: {
+    Multiselect,
+    Xinput
+  },
 
   computed: mapGetters({
     user: 'user'
@@ -356,7 +331,20 @@ export default {
   },
 
   methods: {
+    isInvalid () {
+      let inputInvalid = window.document.getElementsByName('span-error').length !== 0
+      let selectInvalid = false
+      return selectInvalid || inputInvalid
+    },
     create () {
+      if (this.isInvalid()) {
+        this.failMessage('表单有错,请检查哦')
+        return
+      }
+      if (this.lteDirection.invalid || this.radarDirection.invalid || this.userDirection.invalid) {
+        this.failMessage('方向图未选择,请检查哦')
+        return
+      }
       let pub = {}
       for (let key in this.paramPublic) {
         if (!this.paramPublic.hasOwnProperty(key)) {
@@ -440,9 +428,9 @@ export default {
         uti_or_multi: [ '多源干扰', '单源干扰' ],
         lte_bindwidth: [ 5, 10, 15, 20 ]
       },
-      lteDirection: { name: '未选择', description: '未选择' },
-      radarDirection: { name: '未选择', description: '未选择' },
-      userDirection: { name: '未选择', description: '未选择' },
+      lteDirection: { name: '未选择', description: '未选择', invalid: true },
+      radarDirection: { name: '未选择', description: '未选择', invalid: true },
+      userDirection: { name: '未选择', description: '未选择', invalid: true },
       directionOptions: [
         { name: 'nothing', language: 'nothing' }
       ],
