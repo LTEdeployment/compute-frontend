@@ -73,6 +73,7 @@ export default {
   },
 
   mounted () {
+    // 检查 Vuex store 里是否有缓存,减轻服务器压力
     if (!this.directions.directions || this.directions.directions.length === 0 || this.directions.page === 0) {
       this.getDirectionsList({ page: this.directions.page })
     }

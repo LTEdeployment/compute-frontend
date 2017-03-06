@@ -131,3 +131,8 @@ Writing data to file...
 
 
 DONE!
+[master 3606b97] build
+ 2 files changed, 134 insertions(+), 1 deletion(-)
+ create mode 100644 nohup.out
+To git@github.com:LTEdeployment/compute-frontend.git
+   901f686..3606b97  master -> master
