@@ -49,10 +49,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import Message from 'vue-bulma-message'
 import Vue from 'vue'
+import * as config from '../../../config/api'
 
+const BASE_API_URL = config['base_url'] + 'api/'
 const MessageComponent = Vue.extend(Message)
 const openMessage = (propsData = {
   title: '',
@@ -82,12 +84,47 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      'addDirection'
-    ]),
-
     create () {
-      this.addDirection({paramName: this.name, paramFile: this.file, paramDescription: this.description, onSuccess: this.successMessage, onFail: this.failMessage})
+      if (!this.name) {
+        this.failMessage('请输入方向图名称')
+        return
+      }
+      if (!this.file) {
+        this.failMessage('请指定一个方向图文件')
+        return
+      }
+      if (!this.description) {
+        this.failMessage('请输入方向图简介')
+        return
+      }
+      if (!this.file.name || !this.file.name.endsWith('mat')) {
+        this.failMessage('方向图文件有误!')
+        return
+      }
+      let formData = new window.FormData()
+      formData.append('name', this.name)
+      formData.append('direction', this.file)
+      formData.append('description', this.description)
+      Vue.http
+        .post(`${BASE_API_URL}directions/create`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          xhr: {
+            withCredentials: true
+          }
+        })
+        .then(function (response) {
+          if (response.body.code !== 0) {
+            // server error
+            this.failMessage(response.body.message)
+            return
+          }
+          this.successMessage('成功')
+        }, function (error) {
+          // network error
+          this.failMessage('error ' + error)
+        })
     },
 
     onFileChange (e) {

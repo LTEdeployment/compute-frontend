@@ -4,37 +4,6 @@ import * as config from '../../config/api'
 
 const BASE_API_URL = config['base_url'] + 'api/'
 
-export const addDirection = function ({
-  commit
-}, payload) {
-  // 拼装表单
-  let formData = new window.FormData()
-  formData.append('name', payload.paramName)
-  formData.append('direction', payload.paramFile)
-  formData.append('description', payload.paramDescription)
-
-  Vue.http
-    .post(`${BASE_API_URL}directions/create`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      xhr: {
-        withCredentials: true
-      }
-    })
-    .then(function (response) {
-      if (response.body.code !== 0) {
-        // server error
-        payload.onFail(response.body.message)
-        return
-      }
-      payload.onSuccess('成功')
-    }, function (error) {
-      // network error
-      payload.onFail('error ' + error)
-    })
-}
-
 export const userLogin = ({
   commit
 }, payload) => {
