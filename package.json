@@ -18,7 +18,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production node build/build.js && node_modules/.bin/github-markdown README.md >> docs/index.html",
+    "build": "cross-env NODE_ENV=production node build/build.js && node_modules/.bin/github-markdown README.md > docs/index.html",
     "clean": "rm -rf dist",
     "deploy": "npm run clean && npm run build && git add . --all && git commit -m 'build' && git push origin master",
     "dev": "cross-env NODE_ENV=development DEV_ENV=true node build/dev-server.js",
