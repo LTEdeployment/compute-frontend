@@ -69,15 +69,51 @@ export const userCheck = ({
       console.log('error ' + error)
     })
 }
+const getDirection = (direction, callback) => {
+  Vue.http
+    .get(`${BASE_API_URL}directions/name/${direction.name}`)
+    .then(function (response) {
+      if (!response.body) {
+        console.log('server return null')
+        return
+      }
+      if (Number.parseInt(response.body.code) !== 0) {
+        console.log('error: ' + response.body.message)
+        return
+      }
+      let direction = response.body.data
+      callback(direction)
+    }, function (error) {
+      console.log('error: ' + error)
+    })
+}
 
 export const getDirectionsList = ({
   commit
 }, payload) => {
   let page = payload.page
   Vue.http
-    .get(`${BASE_API_URL}directions/list/${page}`)
+    .get(`${BASE_API_URL}directions/listname/${page}`)
     .then(function (response) {
-      commit(types.UPDATE_DIRECTIONS, response.body, page)
+      if (!response.body) {
+        console.log('server return null')
+        return
+      }
+      if (Number.parseInt(response.body.code) !== 0) {
+        console.log('error: ' + response.body.message)
+        return
+      }
+      let list = response.body.data
+      commit(types.UPDATE_DIRECTIONS, list)
+      for (let i = 0; i < list.length; ++i) {
+        let item = list[i]
+        getDirection(item, function (direction) {
+          commit(types.UPDATE_DIRECTION, {
+            direction,
+            index: i
+          })
+        })
+      }
     }, function (error) {
       console.log('error: ' + error)
     })
