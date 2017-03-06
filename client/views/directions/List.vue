@@ -117,6 +117,9 @@ export default {
       if (!item.finished) {
         return item.name + '（未解析）'
       }
+      if (!item.data) {
+        return item.name + '(加载中)'
+      }
       return item.name
     },
 
