@@ -1,0 +1,2 @@
+webpackJsonp([39,45],{330:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var s=n(14);e.default={components:{ImageModal:s.c}}},345:function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("image-modal",{attrs:{visible:!0,transition:"roll"}},[n("p",{staticClass:"image is-4by3"},[n("img",{attrs:{src:"http://placehold.it/1280x960"}})])])},staticRenderFns:[]}},92:function(t,e,n){var s=n(0)(n(330),n(345),null,null);t.exports=s.exports}});
+//# sourceMappingURL=39.12653d38fc770f824ba4.js.map

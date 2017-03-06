@@ -18,7 +18,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production node build/build.js",
+    "build": "cross-env NODE_ENV=production node build/build.js && node_modules/.bin/github-markdown README.md >> docs/index.html",
     "clean": "rm -rf dist",
     "deploy": "npm run clean && npm run build && git add . --all && git commit -m 'build' && git push origin master",
     "dev": "cross-env NODE_ENV=development DEV_ENV=true node build/dev-server.js",
@@ -36,6 +36,7 @@
     "babel-preset-es2015": "^6.22.0",
     "bulma": "0.2.3",
     "font-awesome": "4.7.0",
+    "markdown-to-html": "0.0.13",
     "mdi": "1.7.22",
     "plotly": "1.0.6",
     "plotly.js": "1.19.2",
