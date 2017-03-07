@@ -7,7 +7,6 @@ const BASE_API_URL = config['base_url'] + 'api/'
 export const userLogin = ({
   commit
 }, payload) => {
-  console.log(`action login: ${payload.email} ${payload.password}`)
   Vue.http
     .post(`${BASE_API_URL}user/signin`, {
       email: payload.email,
@@ -29,7 +28,6 @@ export const userLogin = ({
         return
       }
       let email = response.body.data.email
-      console.log(`user logined: ${email}`)
       commit(types.LOGIN, email)
       payload.onSuccess('成功')
       payload.router.push('/')
@@ -42,7 +40,6 @@ export const userLogin = ({
 export const showModal = ({
   commit
 }, payload) => {
-  console.log('show modal: ' + payload.title)
   commit(types.SHOW_MODAL, payload.title, payload.message)
 }
 
@@ -63,13 +60,14 @@ export const userCheck = ({
         return
       }
       let email = response.body.data.email
-      console.log(`user checked: ${email}`)
       commit(types.LOGIN, email)
     }, function (error) {
       console.log('error ' + error)
     })
 }
+
 const getDirection = (direction, callback) => {
+  // Backend will generate 304 if the direction is resolved.
   Vue.http
     .get(`${BASE_API_URL}directions/name/${direction.name}`)
     .then(function (response) {
