@@ -31,7 +31,8 @@ export const userLogin = ({
       commit(types.LOGIN, email)
       payload.onSuccess('成功')
       payload.router.push('/')
-    }, function (error) {
+    })
+    .catch(function (error) {
       payload.onFail('error ' + error)
       console.log('error ' + error)
     })
@@ -61,7 +62,8 @@ export const userCheck = ({
       }
       let email = response.body.data.email
       commit(types.LOGIN, email)
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error ' + error)
     })
 }
@@ -81,7 +83,8 @@ const getDirection = (direction, callback) => {
       }
       let direction = response.body.data
       callback(direction)
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error: ' + error)
     })
 }
@@ -112,7 +115,8 @@ export const getDirectionsList = ({
           })
         })
       }
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error: ' + error)
     })
 }
@@ -125,7 +129,8 @@ export const getTasksList = ({
     .get(`${BASE_API_URL}tasks/list/${page}`)
     .then(function (response) {
       commit(types.UPDATE_TASKS, response.body, page)
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error: ' + error)
     })
 }
@@ -142,7 +147,8 @@ export const userLogout = ({
       console.log(`user logout`)
       commit(types.LOGOUT)
       payload.router.push('/login')
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error' + error)
     })
 }
@@ -165,7 +171,8 @@ export const userRegister = ({
       commit(types.LOGIN, payload.email)
       payload.onSuccess('ok')
       payload.router.push('/')
-    }, function (error) {
+    })
+    .catch(function (error) {
       console.log('error' + error)
       payload.onFail('' + error)
     })

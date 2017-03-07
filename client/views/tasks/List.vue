@@ -124,7 +124,8 @@ export default {
           return
         }
         this.amount = response.body.data
-      }, function (error) {
+      })
+      .catch(function (error) {
         console.log('error' + error)
       })
   },

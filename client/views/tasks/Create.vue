@@ -318,14 +318,16 @@ export default {
   }),
 
   mounted () {
-    this.$http.get(`${configJson['base_url']}api/directions/all`)
+    this.$http
+      .get(`${configJson['base_url']}api/directions/all`)
       .then(function (response) {
         if (response.body && response.body.code === 0) {
           this.directionOptions = response.body.data
           return
         }
         this.failMessage('error: ' + response.body.message)
-      }, function (err) {
+      })
+      .catch(function (err) {
         this.failMessage('error: ' + JSON.stringify(err))
       })
   },
@@ -380,7 +382,8 @@ export default {
           return
         }
         this.successMessage('创建任务成功')
-      }, function (err) {
+      })
+      .catch(function (err) {
         console.log('error: ' + JSON.stringify(err))
         this.failMessage('创建任务失败: ' + JSON.stringify(err))
       })

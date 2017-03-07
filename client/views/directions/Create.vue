@@ -107,12 +107,8 @@ export default {
       formData.append('description', this.description)
       Vue.http
         .post(`${BASE_API_URL}directions/create`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          xhr: {
-            withCredentials: true
-          }
+          headers: { 'Content-Type': 'multipart/form-data' },
+          xhr: { withCredentials: true }
         })
         .then(function (response) {
           if (response.body.code !== 0) {
@@ -121,7 +117,8 @@ export default {
             return
           }
           this.successMessage('成功')
-        }, function (error) {
+        })
+        .catch(function (error) {
           // network error
           this.failMessage('error ' + error)
         })
